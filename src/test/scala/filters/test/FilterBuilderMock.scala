@@ -7,8 +7,6 @@ import filters.api._
 import filters.impl.FilterBuilder
 import org.easymock.EasyMock
 
-import scala.util.{Failure, Try}
-
 class FilterBuilderMock(delegate: FilterQuery) extends FilterBuilder {
   override def query(f: Filter): Seq[Item] = null
   override def createExactFilter(prop: String): ExactFilter = delegate.createExactFilter(prop)
@@ -18,6 +16,4 @@ class FilterBuilderMock(delegate: FilterQuery) extends FilterBuilder {
   def reset() = EasyMock.reset(delegate)
   def replay() = EasyMock.replay(delegate)
   def verify() = EasyMock.verify(delegate)
-
-  override def buildFilter(expr: String): Try[Filter] = Failure(new NotImplementedError("not yet implemented"))
 }
